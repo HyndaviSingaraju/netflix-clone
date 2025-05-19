@@ -14,12 +14,13 @@ const TitleCards = ({title,category}) => {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYzFlMDI0YzgwNjBkODkwMzg0MWFkZjRjYWVlNTYyYSIsIm5iZiI6MTc0NzU1MzM2Mi4zODksInN1YiI6IjY4Mjk4YzUyODRjMTdjMTEyZjhjMDFjOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.L6GwZ5hACII0EQSARpCALQUGjQr31f8p1Sp94C9n5RI'
   }
 };
-  useEffect(()=>{
-    fetch(`https://api.themoviedb.org/3/movie/${category?category:"now_playing"}?language=en-US&page=1`, options)
+  useEffect(() => {
+  fetch(`https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?language=en-US&page=1`, options)
     .then(res => res.json())
     .then(res => setApiData(res.results))
     .catch(err => console.error(err));
-  })
+}, [category]); // runs only when category changes
+
 
   return (
     <div className='titlecards'>
